@@ -23,4 +23,12 @@ public class Basket : MonoBehaviour
         pos.x = mousePos3D.x; 
         this.transform.position= pos; 
     }
+
+    void OnCollisionEnter(Collision coll){
+        //find out what hits this basket
+        GameObject collidedWith= coll.gameObject; 
+        if(collidedWith.tag=="Apple"){ //if collided object is an Apple...
+            Destroy(collidedWith); // ... FUCKING DESTROOOOY IIIIIIIT!!!
+        }
+    }
 }
