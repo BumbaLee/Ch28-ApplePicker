@@ -1,12 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Basket : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
+    public Text scoreGT;
+
+    void Start(){
+
+        GameObject scoreGO= GameObject.Find("ScoreCounter"); //searches through all GameObjects in scene 
+        //for one named ScoreCounter and assigns it to local variable scoreGo
+        scoreGT= scoreGO.GetComponent<Text>(); //get the Text component of that GameObject
+        scoreGT.text="0"; //initializes the starting number of points to 0 
         
     }
 
@@ -29,6 +35,9 @@ public class Basket : MonoBehaviour
         GameObject collidedWith= coll.gameObject; 
         if(collidedWith.tag=="Apple"){ //if collided object is an Apple...
             Destroy(collidedWith); // ... FUCKING DESTROOOOY IIIIIIIT!!!
+            int score= int.Parse(scoreGT.text); //Parse the text of the scoreGT into an int. text-->int
+            score=score+100; //add points for catching apple
+            scoreGT.text= score.ToString(); 
         }
     }
 }
