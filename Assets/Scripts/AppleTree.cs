@@ -18,6 +18,7 @@ public class AppleTree : MonoBehaviour
 
     
     void Update() {
+
     // Basic Movement
     Vector3 pos= transform.position; //defines the Vector3 pos to be current position of Apple Tree
     pos.x = pos.x+ (speed*Time.deltaTime); //increases x pos value by speed times deltaTime
@@ -25,5 +26,15 @@ public class AppleTree : MonoBehaviour
     transform.position= pos; //assigns this modified pos back to transform.position (which moves AppleTree to a new position)
 
     //Changing Directions    
+    if(pos.x < -leftAndRightEdge){ //if tree is at left edge
+        speed=Mathf.Abs(speed); //move right. sets speed to absolute value of speed, guaranteeing it will be positive
+        //positive speed translates into movement to the right
+    }else if (pos.x > leftAndRightEdge){ //if tree is at right edge
+        speed=-Mathf.Abs(speed); //move left 
+    }
+    else if(Random.value<chanceToChangeDirections){ //
+        speed= speed*-1; //change directions
+    }
+
     }
 }
